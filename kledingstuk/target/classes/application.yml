@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/dressr?serverTimezone=UTC
+    username: brainstorm13user
+    password: brainstorm13userpw
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
