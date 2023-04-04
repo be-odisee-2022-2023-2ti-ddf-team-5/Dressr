@@ -20,10 +20,17 @@ public class KledingstukSessieSerivceimpl implements KledingstukSessieService {
     public KledingstukSessieSerivceimpl(KledingstukRepository kledingstukRepository){
         this.kledingstukRepository = kledingstukRepository;
     }
-    @Override
-    public Kledingstuk voegKledingstukToe(String naam, String kledingspecificaties) {
-        return null;
+
+    @Transactional(propagation= Propagation.REQUIRED,readOnly=false)
+    public Kledingstuk voegKledingstukToe(String naam, String merk, String kledingspecificaties) {
+
+        return kledingstukRepository.save( createKledingstuk(naam, merk, kledingspecificaties) );
     }
+    private Kledingstuk createKledingstuk(String naam,String merk, String kledingspecificaties) {
+
+        return new Kledingstuk(naam,merk, kledingspecificaties);
+    }
+
 
     @Override
     public List<Kledingstuk> getAllKledingstuk() {

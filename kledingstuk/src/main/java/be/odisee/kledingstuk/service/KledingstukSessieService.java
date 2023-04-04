@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface KledingstukSessieService {
 
-    public Kledingstuk voegKledingstukToe(String naam, String kledingspecificaties);
+    public Kledingstuk voegKledingstukToe(String naam,String merk, String kledingspecificaties);
 
     public List<Kledingstuk> getAllKledingstuk();
 

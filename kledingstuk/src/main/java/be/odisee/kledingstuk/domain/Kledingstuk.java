@@ -15,19 +15,31 @@ public class Kledingstuk {
     @Column
     private String naam;
 
+    @Column
+    private String merk;
+
     @Column String kledingstukspecificaties;
 
 
     public Kledingstuk(){
 
     }
-    public Kledingstuk(String naam, String kledingspecificaties) {
+    public Kledingstuk(String naam,String merk, String kledingspecificaties) {
         this.naam = naam;
+        this.merk = merk;
         this.kledingstukspecificaties = kledingspecificaties;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getMerk() {
+        return merk;
+    }
+
+    public void setMerk(String merk) {
+        this.merk = merk;
     }
 
     public String getNaam() {

@@ -14,8 +14,9 @@
   <div class="text-left">
     <h1>Kledingstuk detail</h1>
     <p><b>Id:</b> <span th:text="${kledingstuk.id}">id</span> </p>
-    <p><b>naam:</b> <span th:text="${kledingstuk.naam}">naam</span> </p>
-    <p><b>kledingstukspecificaties:</b> <span th:text="${kledingstuk.kledingspecificaties}">kledingstukspecificaties</span> </p>
+    <p><b>Naam:</b> <span th:text="${kledingstuk.naam}">naam</span> </p>
+      <p><b>Merk:</b> <span th:text="${kledingstuk.merk}">naam</span> </p>
+    <p><b>Kledingstukspecificaties:</b> <span th:text="${kledingstuk.kledingspecificaties}">kledingstukspecificaties</span> </p>
     <a th:href="@{/verwijderd.html(id=${kledingstuk.id})}">verwijderen</a>
 
   </div>
