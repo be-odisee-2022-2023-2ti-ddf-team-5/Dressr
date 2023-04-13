@@ -9,7 +9,7 @@
   <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<div th:replace="fragments/header :: header">Header</div>
+<div th:replace="~{fragments/header::header}">Header</div>
 <div>
 <H1>LIJST KLEDINGSTUKKEN</H1>
 
@@ -22,7 +22,7 @@
     </ul>
     <a th:href="@{/nieuweKledingstuk.html}">Nieuwe kledingstuk</a>
 </div><br/>
-<div th:replace="fragments/footer :: footer">footer</div>
+<div th:replace="~{fragments/footer :: footer}">footer</div>
 
 </body>
 </html>
