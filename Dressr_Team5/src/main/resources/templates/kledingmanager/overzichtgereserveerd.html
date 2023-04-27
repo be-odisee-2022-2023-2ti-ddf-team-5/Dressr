@@ -11,7 +11,8 @@
 <body>
 
 
-<h1>HALLO GERSERVEERD</h1>
+<h1>OVERZICHT GERSERVEERD</h1>
+<div class="itembtns">
 <ul style="list-style-type: none">
     <li th:each="kledingstuk:${kledingstukken}">
         <a th:href="@{/kledingmanager/kledingstuk.html(id=${kledingstuk.id})}">
@@ -19,7 +20,11 @@
         </a>
     </li>
 </ul>
+</div>
+
+<div class="btns">
 <a th:href="@{/kledingmanager/overzicht.html}">Overzicht kledingstukken</a>
+</div>
 
 
 </body>
