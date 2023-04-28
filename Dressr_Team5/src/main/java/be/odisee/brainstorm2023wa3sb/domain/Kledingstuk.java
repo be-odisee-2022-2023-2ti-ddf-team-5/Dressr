@@ -1,6 +1,7 @@
 package be.odisee.brainstorm2023wa3sb.domain;
 
 import jakarta.persistence.*;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "kledingstukken")
@@ -12,10 +13,14 @@ public class Kledingstuk {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
+
+
     @Column
+    @NotEmpty(message="Vul naam in aub")
     private String naam;
 
     @Column
+    @NotEmpty(message="Vul merk in aub")
     private String merk;
 
     @Column String kledingstukspecificaties;

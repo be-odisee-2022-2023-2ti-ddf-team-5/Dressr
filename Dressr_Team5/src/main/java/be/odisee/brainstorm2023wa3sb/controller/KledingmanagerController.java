@@ -3,6 +3,7 @@ package be.odisee.brainstorm2023wa3sb.controller;
 import be.odisee.brainstorm2023wa3sb.domain.*;
 import be.odisee.brainstorm2023wa3sb.service.KledingstukSessieService;
 import be.odisee.brainstorm2023wa3sb.service.UserContextService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PostAuthorize;
@@ -10,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
@@ -66,7 +68,11 @@ public class KledingmanagerController {
     // hier gaan we naar nieuweKledingstuk.html
 
     @RequestMapping(value={"/kledingmanager/nieuweKledingstuk.html"},method=RequestMethod.POST)
-    public String kledingstukToevoegen(@ModelAttribute("hetkledingstuk") Kledingstuk kledingstuk, ModelMap model){
+    public String kledingstukToevoegen(@ModelAttribute("hetkledingstuk") @Valid Kledingstuk kledingstuk, BindingResult result, ModelMap model){
+
+        if (result.hasErrors()) return "/kledingmanager/nieuweKledingstuk.html";  // fouten op de form => form opnieuw tonen
+
+
         Kledingstuk toegevoegdKledingstuk = kledingstukSessieService.voegKledingstukToe(kledingstuk.getNaam(),kledingstuk.getMerk(), kledingstuk.getKledingspecificaties());
         System.out.println("DEBUG kledingsgegevens Kledingspecificaties: "+kledingstuk.getKledingspecificaties());
         return "redirect:/kledingmanager/kledingstuk.html?id="+toegevoegdKledingstuk.getId();
