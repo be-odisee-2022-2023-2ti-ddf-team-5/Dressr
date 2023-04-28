@@ -15,8 +15,18 @@
         <h1>Nieuwe kledingstuk</h1>
         <form method="POST" th:object="${hetkledingstuk}">
             <fieldset>
-                <div><label>Naam:</label><input type="text" th:field = "*{naam}"/></div>
-                <div><label>Merk:</label><input type="text" th:field = "*{merk}"/></div>
+                <div><label>Naam:</label><input type="text" th:field = "*{naam}"/>
+                    <span class="error"
+                          th:if="${#fields.hasErrors('naam')}"
+                          th:errors="*{naam}">theError
+                    </span>
+                </div>
+                <div><label>Merk:</label><input type="text" th:field = "*{merk}"/>
+                    <span class="error"
+                          th:if="${#fields.hasErrors('merk')}"
+                          th:errors="*{merk}">theError
+                    </span>
+                </div>
                 <div><label>Kledingstukspecificaties:</label><input type="text" th:field = "*{kledingspecificaties}"/></div>
                 <div><input name="submit" type="submit" value="save"/></div>
             </fieldset>
