@@ -109,6 +109,12 @@ public class KledingstukSessieServiceImpl implements KledingstukSessieService {
         return kledingstukRepository.save(kledingstuk);
 
     }
+    public Kledingstuk updatekledingstuk(Kledingstuk kledingstuk) {
+        return kledingstukRepository.save(kledingstuk);
+    }
+    public Kledingstuk addkledingstuk(Kledingstuk kledingstuk) {
+        return kledingstukRepository.save(kledingstuk);
+    }
 
     @Transactional
     public Kledingstuk wijzigenreservatie(int kledingstukID, boolean gereserveerd){

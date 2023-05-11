@@ -28,4 +28,7 @@ public interface KledingstukSessieService {
 
     public List<Kledingstuk> getAllgereserveerd();
 
+    public Kledingstuk updatekledingstuk(Kledingstuk kledingstuk);
+
+    public Kledingstuk addkledingstuk(Kledingstuk kledingstuk);
 }
