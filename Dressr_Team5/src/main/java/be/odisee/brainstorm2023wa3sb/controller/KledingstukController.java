@@ -16,7 +16,8 @@ import java.util.List;
 @Controller
 @RequestMapping(value={"/api/v1/kledingstuks"})
 @ResponseStatus(HttpStatus.NOT_IMPLEMENTED)
-@CrossOrigin // by default all Origins are allowed => Postman can handle it
+@CrossOrigin(origins={"http://localhost:8888", "chrome-extension://aejoelaoggembcahagimdiliamlcdmfm"},
+        maxAge = 3600, allowCredentials = "true")
 public class KledingstukController {
 
     protected KledingstukSessieService kledingstukService;
@@ -26,8 +27,6 @@ public class KledingstukController {
         this.kledingstukService = kledingstukService;
     }
 
-
-    // REST GET ... breng de toestand van bestaande resources van de server naar de client (lijst van objecten)
     @RequestMapping(value={""},method=RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<List<Kledingstuk>> getKledingstuk(){
@@ -36,8 +35,6 @@ public class KledingstukController {
         if (kledingstuks != null) return ResponseEntity.ok().body(kledingstuks);
         else return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
-
-    // REST GET ... breng de toestand van bestaande resource van de server naar de client (één object)
     @RequestMapping(value={"/{id:[0-9]*}"},method= RequestMethod.GET)
     @ResponseBody
     public  ResponseEntity<Kledingstuk> getKledingstukById(@PathVariable("id") int id){
@@ -47,8 +44,7 @@ public class KledingstukController {
         else return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    // REST PUT ... breng de toestand van (gewijzigde) bestaande resource van de client naar de server (één object)
-    @RequestMapping(value={"/{id:[0-9]*}"},method= RequestMethod.PUT)
+    @RequestMapping(value={"/aanpassen/{id:[0-9]*}"},method= RequestMethod.PUT)
     @ResponseBody
     public  ResponseEntity<Kledingstuk> putKledingstukById(@PathVariable("id") int id, @RequestBody Kledingstuk kledingstuk){
 
@@ -61,8 +57,7 @@ public class KledingstukController {
         else return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    // REST DELETE ... verwijder een bestaande resource
-    @RequestMapping(value={"/{id:[0-9]*}"},method= RequestMethod.DELETE)
+    @RequestMapping(value={"/verwijderen/{id:[0-9]*}"},method= RequestMethod.DELETE)
     @ResponseBody
     public  ResponseEntity<Kledingstuk> deleteKledingstukById(@PathVariable("id") int id){
 
@@ -73,11 +68,9 @@ public class KledingstukController {
         }
         else return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
-
-    // REST POST ... hiermee wordt een resource gecreëerd
-    @RequestMapping(value={""},method=RequestMethod.POST)
+    @RequestMapping(value={"/createkledingstuk"},method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody Kledingstuk createPerson(@RequestBody Kledingstuk kledingstuk, HttpServletResponse response)
+    public @ResponseBody Kledingstuk createKledingstuk(@RequestBody Kledingstuk kledingstuk, HttpServletResponse response)
             throws BindException {
 
         kledingstuk = kledingstukService.addkledingstuk(kledingstuk);
